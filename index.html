@@ -10,379 +10,407 @@
         @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
         body {
             font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #0b0f19;
-            color: #f3f4f6;
+            background-color: #ffffff;
+            color: #1e293b;
+            overflow-x: hidden;
+        }
+        @keyframes float-slow {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-20px) scale(1.05); }
+        }
+        @keyframes float-delay {
+            0%, 100% { transform: translateY(0px) scale(1.05); }
+            50% { transform: translateY(20px) scale(1); }
+        }
+        .animate-float-1 {
+            animation: float-slow 10s ease-in-out infinite;
+        }
+        .animate-float-2 {
+            animation: float-delay 15s ease-in-out infinite;
         }
     </style>
 </head>
-<body class="selection:bg-teal-500 selection:text-white">
+<body class="selection:bg-teal-500 selection:text-white relative">
 
-    <!-- Top Banner (Stats mimicking growwithward.com) - Optimized for Mobile -->
-    <div class="bg-gradient-to-r from-teal-900 to-emerald-950 border-b border-teal-800 text-teal-200 text-[10px] md:text-xs py-2 px-4 font-medium tracking-wide">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center text-center gap-1 md:gap-2">
+    <!-- Responsive Running/Floating Background Elements -->
+    <div class="fixed inset-0 -z-50 overflow-hidden pointer-events-none">
+        <!-- Subtle dot grid -->
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#e2e8f0_1px,transparent_1px),linear-gradient(to_bottom,#e2e8f0_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-70"></div>
+        
+        <!-- Floating blur orbs (Responsive size) -->
+        <div class="absolute top-[-10%] left-[-10%] w-[60vw] h-[60vw] md:w-[45vw] md:h-[45vw] rounded-full bg-teal-100/40 blur-[80px] md:blur-[120px] animate-float-1"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[70vw] h-[70vw] md:w-[50vw] md:h-[50vw] rounded-full bg-emerald-100/35 blur-[90px] md:blur-[130px] animate-float-2"></div>
+        <div class="absolute top-[40%] left-[20%] w-[35vw] h-[35vw] rounded-full bg-sky-100/30 blur-[100px] animate-float-1" style="animation-delay: -3s;"></div>
+    </div>
+
+    <!-- Top Banner (Stats) -->
+    <div class="bg-gradient-to-r from-teal-50 to-emerald-50 border-b border-teal-100 text-teal-800 text-[10px] md:text-xs py-2.5 px-4 font-semibold tracking-wide shadow-sm">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center text-center gap-1.5 md:gap-2">
             <div class="flex items-center justify-center gap-2">
-                <span class="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+                <span class="inline-block w-2 h-2 rounded-full bg-teal-500 animate-ping"></span>
                 <span>Mendampingi 17.000+ Pelaku UMKM Indonesia</span>
             </div>
-            <div class="flex justify-center gap-2 md:gap-4 opacity-90">
+            <div class="flex justify-center gap-2 md:gap-4 opacity-95">
                 <span>Featured by Bank Indonesia, Kominfo, ShopeePay</span>
-                <span class="hidden md:inline">•</span>
-                <span class="hidden md:inline">8+ Tahun Pengalaman</span>
+                <span class="hidden md:inline text-teal-300">•</span>
+                <span>8+ Tahun Pengalaman</span>
             </div>
         </div>
     </div>
 
-    <!-- Header / Nav - Responsive Mobile Menu -->
-    <header class="sticky top-0 z-50 backdrop-blur-md bg-opacity-70 bg-[#0b0f19] border-b border-gray-800">
+    <!-- Header / Nav -->
+    <header class="sticky top-0 z-50 backdrop-blur-lg bg-white/85 border-b border-slate-100/80 shadow-sm">
         <div class="max-w-6xl mx-auto px-4 md:px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-lg md:text-xl font-extrabold tracking-tight bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">
-                JIMMI MOHTAR<span class="text-white">.</span>
+            <a href="#" class="text-lg md:text-xl font-extrabold tracking-tight bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">
+                JIMMI MOHTAR<span class="text-slate-800">.</span>
             </a>
             
             <!-- Mobile Menu Toggle Button -->
-            <button id="menu-btn" class="md:hidden text-gray-400 hover:text-white focus:outline-none p-1" aria-label="Toggle Menu">
+            <button id="menu-btn" class="md:hidden text-slate-500 hover:text-slate-800 focus:outline-none p-1" aria-label="Toggle Menu">
                 <i class="fa-solid fa-bars text-xl"></i>
             </button>
 
-            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-gray-300">
-                <a href="#about" class="hover:text-teal-400 transition">Tentang</a>
-                <a href="#services" class="hover:text-teal-400 transition">Layanan</a>
-                <a href="#portfolio" class="hover:text-teal-400 transition">Pengalaman</a>
-                <a href="#contact" class="px-4 py-2 rounded-full border border-teal-500 text-teal-400 hover:bg-teal-950 transition">Jadwalkan Konsultasi</a>
+            <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-slate-600">
+                <a href="#about" class="hover:text-teal-600 transition">Tentang</a>
+                <a href="#services" class="hover:text-teal-600 transition">Layanan</a>
+                <a href="#portfolio" class="hover:text-teal-600 transition">Pengalaman</a>
+                <a href="#contact" class="px-4 py-2 rounded-full border border-teal-600 text-teal-600 hover:bg-teal-50 transition">Jadwalkan Konsultasi</a>
             </nav>
         </div>
 
-        <!-- Mobile Drawer Menu (Hidden by default) -->
-        <div id="mobile-menu" class="hidden md:hidden bg-[#0b0f19] border-b border-gray-800 px-4 py-4 flex flex-col gap-4 text-sm font-semibold text-gray-300">
-            <a href="#about" class="block py-2 hover:text-teal-400 transition">Tentang</a>
-            <a href="#services" class="block py-2 hover:text-teal-400 transition">Layanan</a>
-            <a href="#portfolio" class="block py-2 hover:text-teal-400 transition">Pengalaman</a>
-            <a href="#contact" class="block text-center py-2.5 rounded-full border border-teal-500 text-teal-400 hover:bg-teal-950 transition">Jadwalkan Konsultasi</a>
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 border-b border-slate-100 px-4 py-4 flex flex-col gap-4 text-sm font-semibold text-slate-600 shadow-lg">
+            <a href="#about" class="block py-2 hover:text-teal-600 transition">Tentang</a>
+            <a href="#services" class="block py-2 hover:text-teal-600 transition">Layanan</a>
+            <a href="#portfolio" class="block py-2 hover:text-teal-600 transition">Pengalaman</a>
+            <a href="#contact" class="block text-center py-2.5 rounded-full border border-teal-600 text-teal-600 hover:bg-teal-50 transition">Jadwalkan Konsultasi</a>
         </div>
     </header>
 
-    <!-- Hero Section - Optimized Mobile Layout (Flex column-reverse on mobile) -->
-    <section class="max-w-6xl mx-auto px-4 md:px-6 py-10 md:py-28 flex flex-col-reverse md:grid md:grid-cols-12 gap-10 md:gap-12 items-center">
+    <!-- Hero Section -->
+    <section class="max-w-6xl mx-auto px-4 md:px-6 py-12 md:py-24 flex flex-col-reverse md:grid md:grid-cols-12 gap-10 md:gap-12 items-center">
         <div class="w-full md:col-span-7 space-y-5 md:space-y-6 text-center md:text-left">
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-teal-950 border border-teal-800 text-teal-400 text-[10px] md:text-xs font-semibold uppercase tracking-wider mx-auto md:mx-0">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-50 border border-teal-200/60 text-teal-700 text-[10px] md:text-xs font-bold uppercase tracking-wider mx-auto md:mx-0">
                 <i class="fa-solid fa-brain"></i> Certified AI-Driven Marketing Specialist
             </div>
-            <h1 class="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight text-white leading-tight">
-                Saya Membantu Bisnis Tumbuh Lewat Sistem <span class="bg-gradient-to-r from-teal-400 to-emerald-400 bg-clip-text text-transparent">Digital Marketing & AI</span>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 leading-tight">
+                Saya Membantu Bisnis Tumbuh Lewat Sistem <span class="bg-gradient-to-r from-teal-600 to-emerald-600 bg-clip-text text-transparent">Digital Marketing & AI</span>
             </h1>
-            <p class="text-gray-400 text-sm md:text-lg leading-relaxed max-w-xl mx-auto md:mx-0">
+            <p class="text-slate-600 text-sm md:text-lg leading-relaxed max-w-xl mx-auto md:mx-0 font-medium">
                 Digital Marketing Consultant dengan 8+ tahun pengalaman menyederhanakan pemasaran digital yang kompleks menjadi solusi praktis, hemat biaya, dan sistematis.
             </p>
             <div class="flex flex-col sm:flex-row gap-3 pt-2 justify-center md:justify-start">
-                <a href="#contact" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-teal-500 to-emerald-500 hover:from-teal-600 hover:to-emerald-600 text-white font-bold transition shadow-lg shadow-teal-500/20 text-center text-sm md:text-base">
+                <a href="#contact" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold transition shadow-lg shadow-teal-600/20 text-center text-sm md:text-base">
                     Hubungi Saya <i class="fa-solid fa-arrow-right ml-2"></i>
                 </a>
-                <a href="#portfolio" class="px-8 py-3.5 rounded-xl border border-gray-700 hover:border-gray-500 text-white font-bold transition text-center text-sm md:text-base">
+                <a href="#portfolio" class="px-8 py-3.5 rounded-xl border border-slate-300 hover:border-slate-400 text-slate-700 hover:text-slate-900 font-bold bg-white/60 transition text-center text-sm md:text-base">
                     Lihat Portofolio
                 </a>
             </div>
         </div>
         <div class="w-full md:col-span-5 flex justify-center relative">
-            <div class="absolute -inset-1 rounded-full bg-gradient-to-r from-teal-500 to-emerald-500 opacity-20 blur-3xl"></div>
-            <!-- Photo Profile - Responsive size (fits mobile screen properly) -->
-            <div class="relative w-64 h-64 sm:w-80 sm:h-80 md:w-[400px] md:h-[400px] rounded-3xl bg-slate-900 border border-gray-800 overflow-hidden shadow-2xl flex items-center justify-center">
-                <img src="images/hero-presenting.jpg" alt="Jimmi Mohtar" class="w-full h-full object-cover">
+            <!-- Decorative ring behind hero photo -->
+            <div class="absolute -inset-2 rounded-[32px] bg-gradient-to-r from-teal-400 to-emerald-400 opacity-20 blur-xl"></div>
+            <!-- Photo Profile -->
+            <div class="relative w-64 h-64 sm:w-80 sm:h-80 md:w-[380px] md:h-[380px] rounded-3xl bg-white border border-slate-200/80 overflow-hidden shadow-xl flex items-center justify-center p-2">
+                <img src="images/hero-presenting.jpg" alt="Jimmi Mohtar" class="w-full h-full object-cover rounded-2xl">
             </div>
         </div>
     </section>
 
-    <!-- Logo Cloud / Clients Section (New Section) -->
-    <section class="py-16 bg-[#090d16] border-t border-b border-gray-900 overflow-hidden">
+    <!-- Logo Cloud / Clients Section (Clean White Background Integration) -->
+    <section class="py-16 bg-white/40 border-t border-b border-slate-100">
         <div class="max-w-6xl mx-auto px-4 md:px-6 text-center">
-            <p class="text-[10px] md:text-xs uppercase tracking-widest text-teal-400 font-extrabold mb-10">KLIEN & MITRA STRATEGIS KAMI</p>
+            <p class="text-[10px] md:text-xs uppercase tracking-widest text-teal-600 font-extrabold mb-10">KLIEN & MITRA STRATEGIS KAMI</p>
             
-            <!-- Grid of Clients with Text Labels below each Logo for cleaner appearance -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 items-center justify-items-center">
+            <!-- Grid of Clients: seamless white card grids with grayscale filters -->
+            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-8 gap-6 items-center justify-items-center">
                 <!-- Client 1 -->
-                <div class="flex flex-col items-center gap-3 group">
-                    <div class="h-16 flex items-center justify-center p-2 bg-[#121829] border border-gray-800 rounded-2xl w-28 md:w-32 hover:border-teal-500/50 transition duration-300">
+                <div class="flex flex-col items-center gap-2 group">
+                    <div class="h-16 w-32 flex items-center justify-center p-2 bg-white border border-slate-100 rounded-2xl shadow-sm hover:border-teal-500/40 hover:shadow transition duration-300">
                         <img src="images/logo-bi.jpg" alt="Bank Indonesia" class="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition duration-300">
                     </div>
-                    <span class="text-[10px] md:text-xs font-semibold text-gray-500 group-hover:text-teal-400 transition font-mono">BANK INDONESIA</span>
+                    <span class="text-[9px] md:text-[10px] font-bold text-slate-400 group-hover:text-teal-600 transition font-mono tracking-wider">BANK INDONESIA</span>
                 </div>
                 <!-- Client 2 -->
-                <div class="flex flex-col items-center gap-3 group">
-                    <div class="h-16 flex items-center justify-center p-2 bg-[#121829] border border-gray-800 rounded-2xl w-28 md:w-32 hover:border-teal-500/50 transition duration-300">
-                        <img src="images/logo-komdigi.jpg" alt="Kementerian Kominfo" class="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition duration-300">
+                <div class="flex flex-col items-center gap-2 group">
+                    <div class="h-16 w-32 flex items-center justify-center p-2 bg-white border border-slate-100 rounded-2xl shadow-sm hover:border-teal-500/40 hover:shadow transition duration-300">
+                        <img src="images/logo-komdigi.jpg" alt="KOMDIGI" class="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition duration-300">
                     </div>
-                    <span class="text-[10px] md:text-xs font-semibold text-gray-500 group-hover:text-teal-400 transition font-mono">KOMDIGI RI</span>
+                    <span class="text-[9px] md:text-[10px] font-bold text-slate-400 group-hover:text-teal-600 transition font-mono tracking-wider">KOMDIGI RI</span>
                 </div>
                 <!-- Client 3 -->
-                <div class="flex flex-col items-center gap-3 group">
-                    <div class="h-16 flex items-center justify-center p-2 bg-[#121829] border border-gray-800 rounded-2xl w-28 md:w-32 hover:border-teal-500/50 transition duration-300">
-                        <img src="images/logo-kemenkop.jpg" alt="Kementerian Koperasi" class="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition duration-300">
+                <div class="flex flex-col items-center gap-2 group">
+                    <div class="h-16 w-32 flex items-center justify-center p-2 bg-white border border-slate-100 rounded-2xl shadow-sm hover:border-teal-500/40 hover:shadow transition duration-300">
+                        <img src="images/logo-kemenkop.jpg" alt="Kemenkop" class="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition duration-300">
                     </div>
-                    <span class="text-[10px] md:text-xs font-semibold text-gray-500 group-hover:text-teal-400 transition font-mono">KEMENKOP UKM</span>
+                    <span class="text-[9px] md:text-[10px] font-bold text-slate-400 group-hover:text-teal-600 transition font-mono tracking-wider">KEMENKOP UKM</span>
                 </div>
                 <!-- Client 4 -->
-                <div class="flex flex-col items-center gap-3 group">
-                    <div class="h-16 flex items-center justify-center p-2 bg-[#121829] border border-gray-800 rounded-2xl w-28 md:w-32 hover:border-teal-500/50 transition duration-300">
+                <div class="flex flex-col items-center gap-2 group">
+                    <div class="h-16 w-32 flex items-center justify-center p-2 bg-white border border-slate-100 rounded-2xl shadow-sm hover:border-teal-500/40 hover:shadow transition duration-300">
                         <img src="images/logo-shopeepay.jpg" alt="ShopeePay" class="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition duration-300">
                     </div>
-                    <span class="text-[10px] md:text-xs font-semibold text-gray-500 group-hover:text-teal-400 transition font-mono">SHOPEEPAY</span>
+                    <span class="text-[9px] md:text-[10px] font-bold text-slate-400 group-hover:text-teal-600 transition font-mono tracking-wider">SHOPEEPAY</span>
                 </div>
                 <!-- Client 5 -->
-                <div class="flex flex-col items-center gap-3 group">
-                    <div class="h-16 flex items-center justify-center p-2 bg-[#121829] border border-gray-800 rounded-2xl w-28 md:w-32 hover:border-teal-500/50 transition duration-300">
+                <div class="flex flex-col items-center gap-2 group">
+                    <div class="h-16 w-32 flex items-center justify-center p-2 bg-white border border-slate-100 rounded-2xl shadow-sm hover:border-teal-500/40 hover:shadow transition duration-300">
                         <img src="images/logo-garuda.jpg" alt="Garuda Indonesia" class="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition duration-300">
                     </div>
-                    <span class="text-[10px] md:text-xs font-semibold text-gray-500 group-hover:text-teal-400 transition font-mono">GARUDA INDONESIA</span>
+                    <span class="text-[9px] md:text-[10px] font-bold text-slate-400 group-hover:text-teal-600 transition font-mono tracking-wider">GARUDA IND.</span>
                 </div>
                 <!-- Client 6 -->
-                <div class="flex flex-col items-center gap-3 group">
-                    <div class="h-16 flex items-center justify-center p-2 bg-[#121829] border border-gray-800 rounded-2xl w-28 md:w-32 hover:border-teal-500/50 transition duration-300">
+                <div class="flex flex-col items-center gap-2 group">
+                    <div class="h-16 w-32 flex items-center justify-center p-2 bg-white border border-slate-100 rounded-2xl shadow-sm hover:border-teal-500/40 hover:shadow transition duration-300">
                         <img src="images/logo-revo.jpg" alt="RevoU" class="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition duration-300">
                     </div>
-                    <span class="text-[10px] md:text-xs font-semibold text-gray-500 group-hover:text-teal-400 transition font-mono">REVOU</span>
+                    <span class="text-[9px] md:text-[10px] font-bold text-slate-400 group-hover:text-teal-600 transition font-mono tracking-wider">REVOU</span>
                 </div>
                 <!-- Client 7 -->
-                <div class="flex flex-col items-center gap-3 group">
-                    <div class="h-16 flex items-center justify-center p-2 bg-[#121829] border border-gray-800 rounded-2xl w-28 md:w-32 hover:border-teal-500/50 transition duration-300">
+                <div class="flex flex-col items-center gap-2 group">
+                    <div class="h-16 w-32 flex items-center justify-center p-2 bg-white border border-slate-100 rounded-2xl shadow-sm hover:border-teal-500/40 hover:shadow transition duration-300">
                         <img src="images/logo-belajarlagi.jpg" alt="Belajarlagi" class="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition duration-300">
                     </div>
-                    <span class="text-[10px] md:text-xs font-semibold text-gray-500 group-hover:text-teal-400 transition font-mono">BELAJARLAGI</span>
+                    <span class="text-[9px] md:text-[10px] font-bold text-slate-400 group-hover:text-teal-600 transition font-mono tracking-wider">BELAJARLAGI</span>
                 </div>
                 <!-- Client 8 -->
-                <div class="flex flex-col items-center gap-3 group">
-                    <div class="h-16 flex items-center justify-center p-2 bg-[#121829] border border-gray-800 rounded-2xl w-28 md:w-32 hover:border-teal-500/50 transition duration-300">
+                <div class="flex flex-col items-center gap-2 group">
+                    <div class="h-16 w-32 flex items-center justify-center p-2 bg-white border border-slate-100 rounded-2xl shadow-sm hover:border-teal-500/40 hover:shadow transition duration-300">
                         <img src="images/logo-kemang.jpg" alt="Kemang Property" class="max-h-full max-w-full object-contain grayscale group-hover:grayscale-0 transition duration-300">
                     </div>
-                    <span class="text-[10px] md:text-xs font-semibold text-gray-500 group-hover:text-teal-400 transition font-mono">KEMANG PROPERTY</span>
+                    <span class="text-[9px] md:text-[10px] font-bold text-slate-400 group-hover:text-teal-600 transition font-mono tracking-wider">KEMANG PROP.</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services / How I Can Help -->
-    <section id="services" class="border-t border-gray-900 bg-[#090d16] py-16 md:py-28">
+    <!-- Services Section -->
+    <section id="services" class="border-t border-slate-100 bg-slate-50/50 py-16 md:py-24">
         <div class="max-w-6xl mx-auto px-4 md:px-6">
             <div class="text-center max-w-2xl mx-auto mb-12 md:mb-16 space-y-3">
-                <h2 class="text-[10px] md:text-xs uppercase tracking-widest text-teal-400 font-extrabold">3 LAYANAN UNGGULAN</h2>
-                <p class="text-2xl md:text-4xl font-extrabold text-white">Bagaimana Saya Dapat Membantu Pertumbuhan Bisnis Anda</p>
+                <h2 class="text-[10px] md:text-xs uppercase tracking-widest text-teal-600 font-extrabold">3 LAYANAN UNGGULAN</h2>
+                <p class="text-2xl md:text-4xl font-extrabold text-slate-900">Bagaimana Saya Dapat Membantu Pertumbuhan Bisnis Anda</p>
             </div>
             
             <div class="grid md:grid-cols-3 gap-6 md:gap-8">
                 <!-- Service 1 -->
-                <div class="bg-[#0f1423] p-6 md:p-8 rounded-2xl border border-gray-800 hover:border-teal-500/50 transition duration-300 flex flex-col justify-between group">
+                <div class="bg-white/80 p-6 md:p-8 rounded-2xl border border-slate-200/60 hover:border-teal-500/40 hover:shadow-md transition duration-300 flex flex-col justify-between group shadow-sm">
                     <div class="space-y-4 md:space-y-6">
-                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-teal-950/50 border border-teal-800 text-teal-400 flex items-center justify-center text-lg md:text-xl font-bold">1</div>
-                        <h3 class="text-lg md:text-xl font-bold text-white group-hover:text-teal-400 transition">Digital Marketing & AI Consultation</h3>
-                        <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-teal-50 border border-teal-200 text-teal-600 flex items-center justify-center text-lg md:text-xl font-bold">1</div>
+                        <h3 class="text-lg md:text-xl font-bold text-slate-900 group-hover:text-teal-600 transition">Digital Marketing & AI Consultation</h3>
+                        <p class="text-slate-600 text-xs md:text-sm leading-relaxed">
                             Membangun cetak biru (roadmap) pemasaran digital, riset audiens, integrasi tools kecerdasan buatan (AI) untuk automasi kerja tim, hingga penyusunan strategi pertumbuhan organik dan berbayar yang hemat biaya.
                         </p>
                     </div>
-                    <a href="#contact" class="mt-6 md:mt-8 text-xs md:text-sm font-semibold text-teal-400 flex items-center gap-2 hover:underline">Jadwalkan Audit Strategi <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#contact" class="mt-6 md:mt-8 text-xs md:text-sm font-semibold text-teal-600 flex items-center gap-2 hover:underline">Jadwalkan Audit Strategi <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
                 <!-- Service 2 -->
-                <div class="bg-[#0f1423] p-6 md:p-8 rounded-2xl border border-gray-800 hover:border-emerald-500/50 transition duration-300 flex flex-col justify-between group">
+                <div class="bg-white/80 p-6 md:p-8 rounded-2xl border border-slate-200/60 hover:border-emerald-500/40 hover:shadow-md transition duration-300 flex flex-col justify-between group shadow-sm">
                     <div class="space-y-4 md:space-y-6">
-                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-emerald-950/50 border border-emerald-800 text-emerald-400 flex items-center justify-center text-lg md:text-xl font-bold">2</div>
-                        <h3 class="text-lg md:text-xl font-bold text-white group-hover:text-emerald-400 transition">Performance Ads & Funnel Optimization</h3>
-                        <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-600 flex items-center justify-center text-lg md:text-xl font-bold">2</div>
+                        <h3 class="text-lg md:text-xl font-bold text-slate-900 group-hover:text-emerald-600 transition">Performance Ads & Funnel Optimization</h3>
+                        <p class="text-slate-600 text-xs md:text-sm leading-relaxed">
                             Pengelolaan iklan profesional di Meta Ads (Facebook & Instagram), TikTok Ads, dan Google Ads yang difokuskan pada hasil penjualan (ROAS) dan efisiensi biaya per akuisisi pelanggan (CPL) dengan pengujian materi iklan secara berkala.
                         </p>
                     </div>
-                    <a href="#contact" class="mt-6 md:mt-8 text-xs md:text-sm font-semibold text-emerald-400 flex items-center gap-2 hover:underline">Konsultasikan Anggaran Iklan <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#contact" class="mt-6 md:mt-8 text-xs md:text-sm font-semibold text-emerald-600 flex items-center gap-2 hover:underline">Konsultasikan Anggaran Iklan <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
 
                 <!-- Service 3 -->
-                <div class="bg-[#0f1423] p-6 md:p-8 rounded-2xl border border-gray-800 hover:border-teal-500/50 transition duration-300 flex flex-col justify-between group">
+                <div class="bg-white/80 p-6 md:p-8 rounded-2xl border border-slate-200/60 hover:border-teal-500/40 hover:shadow-md transition duration-300 flex flex-col justify-between group shadow-sm">
                     <div class="space-y-4 md:space-y-6">
-                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-teal-950/50 border border-teal-800 text-teal-400 flex items-center justify-center text-lg md:text-xl font-bold">3</div>
-                        <h3 class="text-lg md:text-xl font-bold text-white group-hover:text-teal-400 transition">Corporate & MSME Training (Coaching)</h3>
-                        <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+                        <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-teal-50 border border-teal-200 text-teal-600 flex items-center justify-center text-lg md:text-xl font-bold">3</div>
+                        <h3 class="text-lg md:text-xl font-bold text-slate-900 group-hover:text-teal-600 transition">Corporate & MSME Training (Coaching)</h3>
+                        <p class="text-slate-600 text-xs md:text-sm leading-relaxed">
                             Program pelatihan in-house, mentoring intensif untuk UMKM di bawah binaan Bank Indonesia, Kementerian Kominfo, dan ShopeePay untuk meningkatkan literasi branding digital, pembuatan konten kreatif, dan WhatsApp marketing.
                         </p>
                     </div>
-                    <a href="#contact" class="mt-6 md:mt-8 text-xs md:text-sm font-semibold text-teal-400 flex items-center gap-2 hover:underline">Undang Saya sebagai Mentor <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#contact" class="mt-6 md:mt-8 text-xs md:text-sm font-semibold text-teal-600 flex items-center gap-2 hover:underline">Undang Saya sebagai Mentor <i class="fa-solid fa-arrow-right"></i></a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Experience / Case Studies / Clients -->
-    <section id="portfolio" class="py-16 md:py-28 max-w-6xl mx-auto px-4 md:px-6">
+    <section id="portfolio" class="py-16 md:py-24 max-w-6xl mx-auto px-4 md:px-6">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-12 md:mb-16">
             <div class="space-y-3">
-                <h2 class="text-[10px] md:text-xs uppercase tracking-widest text-teal-400 font-extrabold">STUDI KASUS & PENGALAMAN</h2>
-                <h3 class="text-2xl md:text-4xl font-extrabold text-white">Bukti Nyata Hasil Kolaborasi</h3>
+                <h2 class="text-[10px] md:text-xs uppercase tracking-widest text-teal-600 font-extrabold">STUDI KASUS & PENGALAMAN</h2>
+                <h3 class="text-2xl md:text-4xl font-extrabold text-slate-900">Bukti Nyata Hasil Kolaborasi</h3>
             </div>
         </div>
 
-        <!-- Portfolio Documents Download Section (New Section) -->
-        <div class="mb-12 bg-[#0f1423] p-6 md:p-8 rounded-2xl border border-gray-800">
-            <h4 class="text-lg md:text-xl font-bold text-white mb-3">Dokumen Hasil Kerja & Perencanaan Strategis</h4>
-            <p class="text-gray-400 text-xs md:text-sm mb-6 leading-relaxed">
-                Di bawah ini adalah beberapa draf draf nyata dari dokumen analisis kompetitor, rencana pemasaran digital, dan strategi branding yang pernah saya susun untuk klien. Silakan unduh langsung untuk melihat kedalaman analisisnya:
+        <!-- Portfolio Documents Download Section -->
+        <div class="mb-12 bg-slate-50/80 p-6 md:p-8 rounded-2xl border border-slate-200 shadow-sm">
+            <h4 class="text-lg md:text-xl font-bold text-slate-900 mb-3">Dokumen Hasil Kerja & Perencanaan Strategis</h4>
+            <p class="text-slate-600 text-xs md:text-sm mb-6 leading-relaxed">
+                Di bawah ini adalah beberapa draf nyata dari dokumen analisis kompetitor, rencana pemasaran digital, dan strategi branding yang pernah saya susun untuk klien. Silakan unduh langsung untuk melihat kedalaman analisisnya:
             </p>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                <a href="https://drive.google.com/file/d/1l1oKsfUee3XhJTE62Z0RJ9QQ6g4mQZyx/view?usp=drivesdk" target="_blank" class="flex items-center justify-between p-4 rounded-xl bg-[#151a2e] border border-gray-800 hover:border-teal-500/50 transition group">
+                <a href="https://drive.google.com/file/d/1l1oKsfUee3XhJTE62Z0RJ9QQ6g4mQZyx/view?usp=drivesdk" target="_blank" class="flex items-center justify-between p-4 rounded-xl bg-white border border-slate-200 hover:border-teal-500/50 hover:shadow transition group">
                     <div class="flex items-center gap-3">
                         <i class="fa-solid fa-file-pdf text-red-500 text-xl"></i>
                         <div class="text-left">
-                            <div class="text-xs md:text-sm font-semibold text-white group-hover:text-teal-400 transition">Marketing Plan Guresu</div>
-                            <div class="text-[10px] text-gray-500 font-mono">Guresu Dining • PDF</div>
+                            <div class="text-xs md:text-sm font-semibold text-slate-800 group-hover:text-teal-600 transition">Marketing Plan Guresu</div>
+                            <div class="text-[10px] text-slate-400 font-mono">Guresu Dining • PDF</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-white transition text-xs"></i>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-slate-400 group-hover:text-slate-800 transition text-xs"></i>
                 </a>
-                <a href="https://drive.google.com/file/d/1jF6QbB4CqpWw6qmWzwdQbD8uHhGOfvxj/view?usp=drivesdk" target="_blank" class="flex items-center justify-between p-4 rounded-xl bg-[#151a2e] border border-gray-800 hover:border-teal-500/50 transition group">
+                <a href="https://drive.google.com/file/d/1jF6QbB4CqpWw6qmWzwdQbD8uHhGOfvxj/view?usp=drivesdk" target="_blank" class="flex items-center justify-between p-4 rounded-xl bg-white border border-slate-200 hover:border-teal-500/50 hover:shadow transition group">
                     <div class="flex items-center gap-3">
                         <i class="fa-solid fa-file-pdf text-red-500 text-xl"></i>
                         <div class="text-left">
-                            <div class="text-xs md:text-sm font-semibold text-white group-hover:text-teal-400 transition">Marketing Plan Magna</div>
-                            <div class="text-[10px] text-gray-500 font-mono">Magna Interior • PDF</div>
+                            <div class="text-xs md:text-sm font-semibold text-slate-800 group-hover:text-teal-600 transition">Marketing Plan Magna</div>
+                            <div class="text-[10px] text-slate-400 font-mono">Magna Interior • PDF</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-white transition text-xs"></i>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-slate-400 group-hover:text-slate-800 transition text-xs"></i>
                 </a>
-                <a href="https://drive.google.com/file/d/182BxoAu6Cut3KORTJVXq02S9PRCBPSoD/view?usp=drivesdk" target="_blank" class="flex items-center justify-between p-4 rounded-xl bg-[#151a2e] border border-gray-800 hover:border-teal-500/50 transition group">
+                <a href="https://drive.google.com/file/d/182BxoAu6Cut3KORTJVXq02S9PRCBPSoD/view?usp=drivesdk" target="_blank" class="flex items-center justify-between p-4 rounded-xl bg-white border border-slate-200 hover:border-teal-500/50 hover:shadow transition group">
                     <div class="flex items-center gap-3">
                         <i class="fa-solid fa-file-pdf text-red-500 text-xl"></i>
                         <div class="text-left">
-                            <div class="text-xs md:text-sm font-semibold text-white group-hover:text-teal-400 transition">Marketing Plan Trusmiland</div>
-                            <div class="text-[10px] text-gray-500 font-mono">Trusmiland • PDF</div>
+                            <div class="text-xs md:text-sm font-semibold text-slate-800 group-hover:text-teal-600 transition">Marketing Plan Trusmiland</div>
+                            <div class="text-[10px] text-slate-400 font-mono">Trusmiland • PDF</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-white transition text-xs"></i>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-slate-400 group-hover:text-slate-800 transition text-xs"></i>
                 </a>
-                <a href="https://drive.google.com/file/d/1GGG75eJay2TcIQjSc1FdAIAMHvCWzTY_/view?usp=drivesdk" target="_blank" class="flex items-center justify-between p-4 rounded-xl bg-[#151a2e] border border-gray-800 hover:border-teal-500/50 transition group">
+                <a href="https://drive.google.com/file/d/1GGG75eJay2TcIQjSc1FdAIAMHvCWzTY_/view?usp=drivesdk" target="_blank" class="flex items-center justify-between p-4 rounded-xl bg-white border border-slate-200 hover:border-teal-500/50 hover:shadow transition group">
                     <div class="flex items-center gap-3">
                         <i class="fa-solid fa-file-pdf text-red-500 text-xl"></i>
                         <div class="text-left">
-                            <div class="text-xs md:text-sm font-semibold text-white group-hover:text-teal-400 transition">Competitor iCrypto</div>
-                            <div class="text-[10px] text-gray-500 font-mono">iCrypto Mining • PDF</div>
+                            <div class="text-xs md:text-sm font-semibold text-slate-800 group-hover:text-teal-600 transition">Competitor iCrypto</div>
+                            <div class="text-[10px] text-slate-400 font-mono">iCrypto Mining • PDF</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-white transition text-xs"></i>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-slate-400 group-hover:text-slate-800 transition text-xs"></i>
                 </a>
-                <a href="https://drive.google.com/file/d/1glsac41kbiHDlcPR9b9oZsiCWnS-h0dF/view?usp=drivesdk" target="_blank" class="flex items-center justify-between p-4 rounded-xl bg-[#151a2e] border border-gray-800 hover:border-teal-500/50 transition group">
+                <a href="https://drive.google.com/file/d/1glsac41kbiHDlcPR9b9oZsiCWnS-h0dF/view?usp=drivesdk" target="_blank" class="flex items-center justify-between p-4 rounded-xl bg-white border border-slate-200 hover:border-teal-500/50 hover:shadow transition group">
                     <div class="flex items-center gap-3">
                         <i class="fa-solid fa-file-pdf text-red-500 text-xl"></i>
                         <div class="text-left">
-                            <div class="text-xs md:text-sm font-semibold text-white group-hover:text-teal-400 transition">JOOB ASIA Profile</div>
-                            <div class="text-[10px] text-gray-500 font-mono">JOOB ASIA • PDF</div>
+                            <div class="text-xs md:text-sm font-semibold text-slate-800 group-hover:text-teal-600 transition">JOOB ASIA Profile</div>
+                            <div class="text-[10px] text-slate-400 font-mono">JOOB ASIA • PDF</div>
                         </div>
                     </div>
-                    <i class="fa-solid fa-arrow-up-right-from-square text-gray-500 group-hover:text-white transition text-xs"></i>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-slate-400 group-hover:text-slate-800 transition text-xs"></i>
                 </a>
             </div>
         </div>
 
+        <!-- Case Studies Cards Grid -->
         <div class="grid md:grid-cols-2 gap-6 md:gap-8">
             <!-- Case Study 1 -->
-            <div class="bg-[#0f1423] rounded-2xl border border-gray-800 overflow-hidden flex flex-col justify-between">
+            <div class="bg-white/80 rounded-2xl border border-slate-200/60 overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-md hover:border-teal-500/30 transition duration-300">
                 <div class="p-6 md:p-8 space-y-4">
-                    <div class="flex justify-between items-center text-[10px] md:text-xs text-teal-400 font-mono">
+                    <div class="flex justify-between items-center text-[10px] md:text-xs text-teal-600 font-mono font-bold">
                         <span>F&B / HOSPITALITY</span>
                         <span>2024 - PRESENT</span>
                     </div>
                     <div class="flex justify-between items-center">
-                        <h4 class="text-xl md:text-2xl font-extrabold text-white">Genba Street</h4>
+                        <h4 class="text-xl md:text-2xl font-extrabold text-slate-900">Genba Street</h4>
                         <img src="images/logo-genba.jpg" alt="Genba Street Logo" class="h-8 object-contain rounded">
                     </div>
-                    <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+                    <p class="text-slate-600 text-xs md:text-sm leading-relaxed">
                         Membangun infrastruktur digital dari nol. Mengembangkan brand voice, strategi konten, dan memproduksi lebih dari 80 video kreatif jangka pendek.
                     </p>
-                    <div class="bg-teal-950/30 border border-teal-900 rounded-xl p-4 flex gap-4 md:gap-6 items-center">
+                    <div class="bg-teal-50/50 border border-teal-100 rounded-xl p-4 flex gap-4 md:gap-6 items-center">
                         <div>
-                            <div class="text-lg md:text-xl font-black text-teal-400">Rp125 JT</div>
-                            <div class="text-gray-500 text-[9px] md:text-xs font-semibold">Omset Bulanan (6 Bulan Pertama)</div>
+                            <div class="text-lg md:text-xl font-black text-teal-600">Rp125 JT</div>
+                            <div class="text-slate-500 text-[9px] md:text-xs font-semibold">Omset Bulanan (6 Bulan Pertama)</div>
                         </div>
-                        <div class="w-px h-8 bg-teal-900"></div>
+                        <div class="w-px h-8 bg-teal-100"></div>
                         <div>
-                            <div class="text-lg md:text-xl font-black text-teal-400">130K+</div>
-                            <div class="text-gray-500 text-[9px] md:text-xs font-semibold font-medium">Views Promo Imlek/Valentine</div>
+                            <div class="text-lg md:text-xl font-black text-teal-600">130K+</div>
+                            <div class="text-slate-500 text-[9px] md:text-xs font-semibold font-medium">Views Promo Imlek/Valentine</div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Case Study 2 -->
-            <div class="bg-[#0f1423] rounded-2xl border border-gray-800 overflow-hidden flex flex-col justify-between">
+            <div class="bg-white/80 rounded-2xl border border-slate-200/60 overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-md hover:border-teal-500/30 transition duration-300">
                 <div class="p-6 md:p-8 space-y-4">
-                    <div class="flex justify-between items-center text-[10px] md:text-xs text-teal-400 font-mono">
+                    <div class="flex justify-between items-center text-[10px] md:text-xs text-teal-600 font-mono font-bold">
                         <span>F&B / LUXURY DINING</span>
                         <span>2023 - 2024</span>
                     </div>
                     <div class="flex justify-between items-center">
-                        <h4 class="text-xl md:text-2xl font-extrabold text-white">Guresu Dining</h4>
+                        <h4 class="text-xl md:text-2xl font-extrabold text-slate-900">Guresu Dining</h4>
                         <img src="images/logo-guresu.jpg" alt="Guresu Dining Logo" class="h-8 object-contain rounded">
                     </div>
-                    <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+                    <p class="text-slate-600 text-xs md:text-sm leading-relaxed">
                         Strategi luxury brand positioning untuk restoran premium Omakase. Optimasi website reservasi, kelola iklan berbayar, dan kampanye email pemasaran.
                     </p>
-                    <div class="bg-teal-950/30 border border-teal-900 rounded-xl p-4 flex gap-4 md:gap-6 items-center">
+                    <div class="bg-teal-50/50 border border-teal-100 rounded-xl p-4 flex gap-4 md:gap-6 items-center">
                         <div>
-                            <div class="text-lg md:text-xl font-black text-teal-400">+40%</div>
-                            <div class="text-gray-500 text-[9px] md:text-xs font-semibold">Pemesanan Online</div>
+                            <div class="text-lg md:text-xl font-black text-teal-600">+40%</div>
+                            <div class="text-slate-500 text-[9px] md:text-xs font-semibold">Pemesanan Online</div>
                         </div>
-                        <div class="w-px h-8 bg-teal-900"></div>
+                        <div class="w-px h-8 bg-teal-100"></div>
                         <div>
-                            <div class="text-lg md:text-xl font-black text-teal-400">+25%</div>
-                            <div class="text-gray-500 text-[9px] md:text-xs font-semibold">Pertumbuhan Pendapatan</div>
+                            <div class="text-lg md:text-xl font-black text-teal-600">+25%</div>
+                            <div class="text-slate-500 text-[9px] md:text-xs font-semibold">Pertumbuhan Pendapatan</div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Case Study 3 -->
-            <div class="bg-[#0f1423] rounded-2xl border border-gray-800 overflow-hidden flex flex-col justify-between">
+            <div class="bg-white/80 rounded-2xl border border-slate-200/60 overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-md hover:border-teal-500/30 transition duration-300">
                 <div class="p-6 md:p-8 space-y-4">
-                    <div class="flex justify-between items-center text-[10px] md:text-xs text-teal-400 font-mono">
+                    <div class="flex justify-between items-center text-[10px] md:text-xs text-teal-600 font-mono font-bold">
                         <span>CONSTRUCTION & INTERIOR</span>
                         <span>2023 - PRESENT</span>
                     </div>
                     <div class="flex justify-between items-center">
-                        <h4 class="text-xl md:text-2xl font-extrabold text-white">Bakat Design & Build</h4>
+                        <h4 class="text-xl md:text-2xl font-extrabold text-slate-900">Bakat Design & Build</h4>
                         <img src="images/logo-bakat.jpg" alt="Bakat Logo" class="h-8 object-contain rounded">
                     </div>
-                    <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+                    <p class="text-slate-600 text-xs md:text-sm leading-relaxed">
                         Desain ulang website berbasis WordPress agar ramah konversi dan eksekusi iklan Google/Meta tertarget dengan sistem retargeting.
                     </p>
-                    <div class="bg-teal-950/30 border border-teal-900 rounded-xl p-4 flex gap-4 md:gap-6 items-center">
+                    <div class="bg-teal-50/50 border border-teal-100 rounded-xl p-4 flex gap-4 md:gap-6 items-center">
                         <div>
-                            <div class="text-lg md:text-xl font-black text-teal-400">+40%</div>
-                            <div class="text-gray-500 text-[9px] md:text-xs font-semibold">Trafik Situs Web</div>
+                            <div class="text-lg md:text-xl font-black text-teal-600">+40%</div>
+                            <div class="text-slate-500 text-[9px] md:text-xs font-semibold">Trafik Situs Web</div>
                         </div>
-                        <div class="w-px h-8 bg-teal-900"></div>
+                        <div class="w-px h-8 bg-teal-100"></div>
                         <div>
-                            <div class="text-lg md:text-xl font-black text-teal-400">+30%</div>
-                            <div class="text-gray-500 text-[9px] md:text-xs font-semibold">Kenaikan Leads Baru</div>
+                            <div class="text-lg md:text-xl font-black text-teal-600">+30%</div>
+                            <div class="text-slate-500 text-[9px] md:text-xs font-semibold">Kenaikan Leads Baru</div>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- Case Study 4 -->
-            <div class="bg-[#0f1423] rounded-2xl border border-gray-800 overflow-hidden flex flex-col justify-between">
+            <div class="bg-white/80 rounded-2xl border border-slate-200/60 overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-md hover:border-teal-500/30 transition duration-300">
                 <div class="p-6 md:p-8 space-y-4">
-                    <div class="flex justify-between items-center text-[10px] md:text-xs text-teal-400 font-mono">
+                    <div class="flex justify-between items-center text-[10px] md:text-xs text-teal-600 font-mono font-bold">
                         <span>PREMIUM INTERIOR DESIGN</span>
                         <span>2022 - 2024</span>
                     </div>
                     <div class="flex justify-between items-center">
-                        <h4 class="text-xl md:text-2xl font-extrabold text-white">Magna Furniture</h4>
+                        <h4 class="text-xl md:text-2xl font-extrabold text-slate-900">Magna Furniture</h4>
                         <img src="images/logo-magna.jpg" alt="Magna Logo" class="h-8 object-contain rounded">
                     </div>
-                    <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+                    <p class="text-slate-600 text-xs md:text-sm leading-relaxed">
                         Repositioning brand premium melalui SEO, perombakan lead capture website, serta kolaborasi dengan key opinion leaders (KOL).
                     </p>
-                    <div class="bg-teal-950/30 border border-teal-900 rounded-xl p-4 flex gap-4 md:gap-6 items-center">
+                    <div class="bg-teal-50/50 border border-teal-100 rounded-xl p-4 flex gap-4 md:gap-6 items-center">
                         <div>
                             <div class="text-lg md:text-xl font-black text-teal-400">+45%</div>
-                            <div class="text-gray-500 text-[9px] md:text-xs font-semibold">Trafik Mesin Pencari</div>
+                            <div class="text-slate-500 text-[9px] md:text-xs font-semibold">Trafik Mesin Pencari</div>
                         </div>
-                        <div class="w-px h-8 bg-teal-900"></div>
+                        <div class="w-px h-8 bg-teal-100"></div>
                         <div>
                             <div class="text-lg md:text-xl font-black text-teal-400">+30%</div>
-                            <div class="text-gray-500 text-[9px] md:text-xs font-semibold font-medium">Kenaikan Qualified Leads</div>
+                            <div class="text-slate-500 text-[9px] md:text-xs font-semibold font-medium">Kenaikan Qualified Leads</div>
                         </div>
                     </div>
                 </div>
@@ -390,121 +418,121 @@
         </div>
     </section>
 
-    <!-- Gallery Section (New section) - Optimized for Mobile Grid -->
-    <section class="py-16 md:py-28 bg-[#0b0f19] border-t border-gray-900">
+    <!-- Gallery Section -->
+    <section class="py-16 md:py-24 bg-slate-50/60 border-t border-slate-100">
         <div class="max-w-6xl mx-auto px-4 md:px-6">
             <div class="space-y-3 mb-12 text-center">
-                <h2 class="text-[10px] md:text-xs uppercase tracking-widest text-teal-400 font-extrabold">GALERI KEGIATAN</h2>
-                <h3 class="text-2xl md:text-4xl font-extrabold text-white">Pendampingan & Pelatihan UMKM</h3>
-                <p class="text-gray-400 max-w-2xl mx-auto text-xs md:text-sm">
+                <h2 class="text-[10px] md:text-xs uppercase tracking-widest text-teal-600 font-extrabold">GALERI KEGIATAN</h2>
+                <h3 class="text-2xl md:text-4xl font-extrabold text-slate-900">Pendampingan & Pelatihan UMKM</h3>
+                <p class="text-slate-600 max-w-2xl mx-auto text-xs md:text-sm font-medium">
                     Dokumentasi kegiatan pelatihan pemasaran digital dan pengembangan kapasitas UMKM bersama Bank Indonesia, Kementerian Kominfo, dan lembaga nasional lainnya.
                 </p>
             </div>
             
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <div class="rounded-2xl overflow-hidden border border-gray-800 h-48 md:h-64">
+                <div class="rounded-2xl overflow-hidden border border-slate-200 h-48 md:h-64 shadow-sm">
                     <img src="images/presentation-6.jpg" alt="Onboarding UMKM Bank Indonesia Flobamorata" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="rounded-2xl overflow-hidden border border-gray-800 h-48 md:h-64">
+                <div class="rounded-2xl overflow-hidden border border-slate-200 h-48 md:h-64 shadow-sm">
                     <img src="images/presentation-7.jpg" alt="Pemaparan Materi Digitalisasi UMKM" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="rounded-2xl overflow-hidden border border-gray-800 h-48 md:h-64">
+                <div class="rounded-2xl overflow-hidden border border-slate-200 h-48 md:h-64 shadow-sm">
                     <img src="images/presentation-8.jpg" alt="Pelatihan Strategi Digital Marketing UMKM" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
-                <div class="rounded-2xl overflow-hidden border border-gray-800 h-48 md:h-64">
+                <div class="rounded-2xl overflow-hidden border border-slate-200 h-48 md:h-64 shadow-sm">
                     <img src="images/presentation-1.jpg" alt="Pemaparan Visi Kepariwisataan" class="w-full h-full object-cover hover:scale-105 transition duration-500">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Bio Summary -->
-    <section id="about" class="bg-[#090d16] border-t border-gray-900 py-16 md:py-28">
+    <!-- Bio Summary (About Me) -->
+    <section id="about" class="bg-white border-t border-slate-100 py-16 md:py-28">
         <div class="max-w-6xl mx-auto px-4 md:px-6 grid md:grid-cols-12 gap-10 md:gap-12 items-start">
             <div class="md:col-span-5 space-y-4 text-center md:text-left md:sticky md:top-24">
-                <h2 class="text-[10px] md:text-xs uppercase tracking-widest text-teal-400 font-extrabold">SIAPA SAYA</h2>
-                <h3 class="text-2xl md:text-3xl font-extrabold text-white">Di Balik Layar Pertumbuhan</h3>
-                <p class="text-gray-400 text-xs md:text-sm leading-relaxed">
+                <h2 class="text-[10px] md:text-xs uppercase tracking-widest text-teal-600 font-extrabold">SIAPA SAYA</h2>
+                <h3 class="text-2xl md:text-3xl font-extrabold text-slate-900">Di Balik Layar Pertumbuhan</h3>
+                <p class="text-slate-600 text-xs md:text-sm leading-relaxed font-medium">
                     Saya percaya pemasaran tidak melulu soal membakar uang iklan. Pemasaran terbaik adalah memadukan empati konsumen dengan otomatisasi data yang terstruktur.
                 </p>
                 <div class="flex gap-4 items-center justify-center md:justify-start pt-2">
-                    <a href="https://instagram.com/jimmimohtar" target="_blank" class="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://linkedin.com/in/jimmimohtar" target="_blank" class="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="mailto:jimmy.mukhtar@gmail.com" class="w-10 h-10 rounded-full border border-gray-800 flex items-center justify-center text-gray-400 hover:text-white hover:border-white transition"><i class="fa-solid fa-envelope"></i></a>
+                    <a href="https://instagram.com/jimmimohtar" target="_blank" class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-800 hover:border-slate-800 transition"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://linkedin.com/in/jimmimohtar" target="_blank" class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-800 hover:border-slate-800 transition"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="mailto:jimmy.mukhtar@gmail.com" class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center text-slate-500 hover:text-slate-800 hover:border-slate-800 transition"><i class="fa-solid fa-envelope"></i></a>
                 </div>
             </div>
             
             <div class="md:col-span-7 space-y-8">
                 <!-- Certifications block -->
-                <div class="bg-[#0f1423] p-6 md:p-8 rounded-2xl border border-gray-800 space-y-6">
-                    <h4 class="text-lg md:text-xl font-bold text-white text-center md:text-left">Sertifikasi & Publikasi</h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs md:text-sm text-gray-300">
-                        <div class="flex items-center gap-3"><i class="fa-solid fa-certificate text-teal-400"></i> Marketing Analytics (META)</div>
-                        <div class="flex items-center gap-3"><i class="fa-solid fa-certificate text-teal-400"></i> Action Learning (MarkPlus)</div>
-                        <div class="flex items-center gap-3"><i class="fa-solid fa-certificate text-teal-400"></i> Microsoft Certified Educator (MCE)</div>
-                        <div class="flex items-center gap-3"><i class="fa-solid fa-certificate text-teal-400"></i> Inbound Marketing (Hubspot)</div>
-                        <div class="flex items-center gap-3"><i class="fa-solid fa-certificate text-teal-400"></i> Fundamental of Digital Marketing</div>
-                        <div class="flex items-center gap-3"><i class="fa-solid fa-certificate text-teal-400"></i> Google I/O 2025</div>
+                <div class="bg-slate-50/80 p-6 md:p-8 rounded-2xl border border-slate-200 space-y-6 shadow-sm">
+                    <h4 class="text-lg md:text-xl font-bold text-slate-900 text-center md:text-left">Sertifikasi & Publikasi</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs md:text-sm text-slate-700">
+                        <div class="flex items-center gap-3 font-medium"><i class="fa-solid fa-certificate text-teal-600"></i> Marketing Analytics (META)</div>
+                        <div class="flex items-center gap-3 font-medium"><i class="fa-solid fa-certificate text-teal-600"></i> Action Learning (MarkPlus)</div>
+                        <div class="flex items-center gap-3 font-medium"><i class="fa-solid fa-certificate text-teal-600"></i> Microsoft Certified Educator (MCE)</div>
+                        <div class="flex items-center gap-3 font-medium"><i class="fa-solid fa-certificate text-teal-600"></i> Inbound Marketing (Hubspot)</div>
+                        <div class="flex items-center gap-3 font-medium"><i class="fa-solid fa-certificate text-teal-600"></i> Fundamental of Digital Marketing</div>
+                        <div class="flex items-center gap-3 font-medium"><i class="fa-solid fa-certificate text-teal-600"></i> Google I/O 2025</div>
                     </div>
                 </div>
 
                 <!-- Professional Experience Timeline -->
-                <div class="bg-[#0f1423] p-6 md:p-8 rounded-2xl border border-gray-800 space-y-6">
-                    <h4 class="text-lg md:text-xl font-bold text-white">Riwayat Kerja Profesional</h4>
-                    <div class="space-y-6 relative border-l border-gray-800 pl-4 ml-2">
+                <div class="bg-slate-50/80 p-6 md:p-8 rounded-2xl border border-slate-200 space-y-6 shadow-sm">
+                    <h4 class="text-lg md:text-xl font-bold text-slate-900">Riwayat Kerja Profesional</h4>
+                    <div class="space-y-6 relative border-l border-slate-200 pl-4 ml-2">
                         <!-- Experience item 1 -->
                         <div class="relative space-y-1">
-                            <div class="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full bg-teal-400 border border-[#0b0f19]"></div>
-                            <div class="flex flex-col sm:flex-row sm:justify-between text-xs font-mono text-teal-400">
+                            <div class="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full bg-teal-500 border border-white"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between text-xs font-mono text-teal-600 font-bold">
                                 <span>REVOU</span>
                                 <span>AGUSTUS 2025 - PRESENT</span>
                             </div>
-                            <h5 class="text-sm font-bold text-white">Instructor On-Call B2B Corporate Training</h5>
-                            <p class="text-xs text-gray-400">Mengajar modul digital marketing dan AI untuk kelas korporat dan pelaku usaha.</p>
+                            <h5 class="text-sm font-bold text-slate-900">Instructor On-Call B2B Corporate Training</h5>
+                            <p class="text-xs text-slate-600 font-medium">Mengajar modul digital marketing dan AI untuk kelas korporat dan pelaku usaha.</p>
                         </div>
                         
                         <!-- Experience item 2 -->
                         <div class="relative space-y-1">
-                            <div class="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full bg-emerald-400 border border-[#0b0f19]"></div>
-                            <div class="flex flex-col sm:flex-row sm:justify-between text-xs font-mono text-emerald-400">
+                            <div class="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full bg-emerald-500 border border-white"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between text-xs font-mono text-emerald-600 font-bold">
                                 <span>MAP GROUP ASIA</span>
                                 <span>DESEMBER 2025 - PRESENT</span>
                             </div>
-                            <h5 class="text-sm font-bold text-white">Technical Director for AI Interactive Installation</h5>
-                            <p class="text-xs text-gray-400">Memimpin arsitektur sistem interaktif AI "IMAGINARIA by Digimap" di Bali dalam tenggat waktu 7 hari kerja menggunakan Touchdesigner, macOS, dan web-sockets.</p>
+                            <h5 class="text-sm font-bold text-slate-900">Technical Director for AI Interactive Installation</h5>
+                            <p class="text-xs text-slate-600 font-medium">Memimpin arsitektur sistem interaktif AI "IMAGINARIA by Digimap" di Bali dalam tenggat waktu 7 hari kerja menggunakan Touchdesigner, macOS, dan web-sockets.</p>
                         </div>
 
                         <!-- Experience item 3 -->
                         <div class="relative space-y-1">
-                            <div class="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full bg-teal-400 border border-[#0b0f19]"></div>
-                            <div class="flex flex-col sm:flex-row sm:justify-between text-xs font-mono text-teal-400">
+                            <div class="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full bg-teal-500 border border-white"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between text-xs font-mono text-teal-600 font-bold">
                                 <span>REVOU X BANK INDONESIA JAKARTA</span>
                                 <span>OKTOBER 2025</span>
                             </div>
-                            <h5 class="text-sm font-bold text-white">Instructor – Entrepreneurship Module</h5>
-                            <p class="text-xs text-gray-400">Melatih UMKM binaan dalam pemasaran digital dan AI. Meraih rating pengajar 4.91/5 dan membuat 3 alat bantu AI custom untuk peserta.</p>
+                            <h5 class="text-sm font-bold text-slate-900">Instructor – Entrepreneurship Module</h5>
+                            <p class="text-xs text-slate-600 font-medium">Melatih UMKM binaan dalam pemasaran digital dan AI. Meraih rating pengajar 4.91/5 dan membuat 3 alat bantu AI custom untuk peserta.</p>
                         </div>
 
                         <!-- Experience item 4 -->
                         <div class="relative space-y-1">
-                            <div class="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full bg-gray-600 border border-[#0b0f19]"></div>
-                            <div class="flex flex-col sm:flex-row sm:justify-between text-xs font-mono text-gray-400">
+                            <div class="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full bg-slate-400 border border-white"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between text-xs font-mono text-slate-500 font-bold">
                                 <span>BANK INDONESIA NTT</span>
                                 <span>APRIL 2024 - SEPTEMBER 2024</span>
                             </div>
-                            <h5 class="text-sm font-bold text-white">Digital Marketing Mentor</h5>
-                            <p class="text-xs text-gray-400">Menyusun kurikulum, mengevaluasi tugas, dan mendampingi UMKM NTT binaan BI menuju Go-Digital.</p>
+                            <h5 class="text-sm font-bold text-slate-900">Digital Marketing Mentor</h5>
+                            <p class="text-xs text-slate-600 font-medium">Menyusun kurikulum, mengevaluasi tugas, dan mendampingi UMKM NTT binaan BI menuju Go-Digital.</p>
                         </div>
 
                         <!-- Experience item 5 -->
                         <div class="relative space-y-1">
-                            <div class="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full bg-gray-600 border border-[#0b0f19]"></div>
-                            <div class="flex flex-col sm:flex-row sm:justify-between text-xs font-mono text-gray-400">
+                            <div class="absolute -left-[21px] top-1.5 w-3 h-3 rounded-full bg-slate-400 border border-white"></div>
+                            <div class="flex flex-col sm:flex-row sm:justify-between text-xs font-mono text-slate-500 font-bold">
                                 <span>KEMENTERIAN KOMINFO RI</span>
                                 <span>APRIL 2020 - SEPTEMBER 2022</span>
                             </div>
-                            <h5 class="text-sm font-bold text-white">Digital Marketing Lecturer</h5>
-                            <p class="text-xs text-gray-400">Menjadi pembicara dan fasilitator pelatihan UMKM digital nasional.</p>
+                            <h5 class="text-sm font-bold text-slate-900">Digital Marketing Lecturer</h5>
+                            <p class="text-xs text-slate-600 font-medium">Menjadi pembicara dan fasilitator pelatihan UMKM digital nasional.</p>
                         </div>
                     </div>
                 </div>
@@ -513,25 +541,25 @@
     </section>
 
     <!-- Call to Action / Contact -->
-    <section id="contact" class="py-16 md:py-28 max-w-4xl mx-auto px-4 md:px-6 text-center space-y-6 md:space-y-8">
-        <h2 class="text-3xl md:text-5xl font-extrabold text-white leading-tight">Mulai Kembangkan Bisnis Anda Secara Sistematis</h2>
-        <p class="text-gray-400 text-sm md:text-lg max-w-2xl mx-auto">
+    <section id="contact" class="py-16 md:py-24 max-w-4xl mx-auto px-4 md:px-6 text-center space-y-6 md:space-y-8">
+        <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 leading-tight">Mulai Kembangkan Bisnis Anda Secara Sistematis</h2>
+        <p class="text-slate-600 text-sm md:text-lg max-w-2xl mx-auto font-medium">
             Mari jadwalkan obrolan 1-on-1 gratis selama 15 menit untuk mendiskusikan tantangan pemasaran bisnis Anda.
         </p>
         <div class="pt-2">
-            <a href="https://wa.me/6285155423258" target="_blank" class="inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-[#25d366] hover:bg-[#20ba5a] text-[#0b0f19] font-bold text-base md:text-lg transition shadow-lg shadow-emerald-500/20">
+            <a href="https://wa.me/6285155423258" target="_blank" class="inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-[#25d366] hover:bg-[#20ba5a] text-white font-bold text-base md:text-lg transition shadow-lg shadow-emerald-500/20">
                 <i class="fa-brands fa-whatsapp text-xl md:text-2xl"></i> Hubungi WhatsApp Saya
             </a>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-gray-900 py-10 bg-[#080c14]">
-        <div class="max-w-6xl mx-auto px-4 md:px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs md:text-sm text-gray-500 text-center">
+    <footer class="border-t border-slate-100 py-10 bg-slate-50">
+        <div class="max-w-6xl mx-auto px-4 md:px-6 flex flex-col md:flex-row justify-between items-center gap-4 text-xs md:text-sm text-slate-400 text-center font-medium">
             <div>© 2026 Jimmi Mohtar. All rights reserved.</div>
             <div class="flex gap-6">
-                <a href="#" class="hover:text-white transition">Kebijakan Privasi</a>
-                <a href="#" class="hover:text-white transition">Syarat & Ketentuan</a>
+                <a href="#" class="hover:text-slate-600 transition">Kebijakan Privasi</a>
+                <a href="#" class="hover:text-slate-600 transition">Syarat & Ketentuan</a>
             </div>
         </div>
     </footer>
